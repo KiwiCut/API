@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { Cliente } from '../entity/cliente.entity';
+import { promises } from 'dns';
 
 @Injectable()
 export class ClienteService {
@@ -108,6 +109,15 @@ export class ClienteService {
       throw new Error('CPF inexistente e/ou inválido');
     }
   }
+
+  async visualizarTodos(): Promise<void>{
+    const queryResult = await this.connection.query(
+      `
+      Select * from kiwicut.Cliente
+      `,
+    );
+  }
+
 
   
 }
