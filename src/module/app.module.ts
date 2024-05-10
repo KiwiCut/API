@@ -10,9 +10,9 @@ import { AppService } from 'src/service/app.service';
         type: 'mssql',
         host: 'regulus.cotuca.unicamp.br',
         port: 1433,
-        username: 'BD23341',
-        password: 'BD23341',
-        database: 'BD23341',
+        username: 'BD22300',
+        password: 'BD22300',
+        database: 'BD22300',
         entities: [],
         synchronize: true,
         extra: {
