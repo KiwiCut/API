@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Delete, Param, Put, Get } from '@nestjs/common';
+import { Controller, Post, Body, Delete, Put, Get } from '@nestjs/common';
+import { Cliente } from 'src/entity/cliente.entity';
 import { ClienteService } from 'src/service/cliente.services';
 
 
@@ -74,8 +75,8 @@ export class AppController {
   }
 
   @Get('buscar')
-  async visualizarTodos(): Promise<void> {
-    await this.clienteService.visualizarTodos();
+  async visualizarTodos(): Promise<Cliente[]> { // Modifique o tipo de retorno para Cliente[]
+    return await this.clienteService.visualizarTodos(); // Retorne a lista de clientes
   }
 
 
