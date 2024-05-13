@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { Cliente } from '../entity/cliente.entity';
 import { promises } from 'dns';
+import { cp } from 'fs';
 
 @Injectable()
 export class ClienteService {
@@ -25,17 +26,16 @@ export class ClienteService {
     await this.connection.query(
       `
       EXEC kiwicut.incluirCliente 
-        @nome = $1, @sobrenome = $2, @email = $3,
-        @telefone = $4, @senha = $5, @cpf = $6,
-        @cep = $7, @dataNascimento = $8
+      '${nome}', '${sobrenome}', '${email}','${telefone}','${senha}','${cpf}','${cep}','${dataNascimento}'
+          
       `,
-      [nome, sobrenome, email, telefone, senha, cpf, cep, dataNascimento],
-    );
+      [nome, sobrenome, email, telefone, senha, cpf, cep, dataNascimento], 
+  );
   }
   async deletarCliente(cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.deletarCliente @cpf = $1, @email = $2
+      EXEC kiwicut.deletarCliente '${cpf}','${email}'
       `,
       [cpf, email],
     );
@@ -48,7 +48,7 @@ export class ClienteService {
   async atualizarNomeCliente(nome: string, cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.atualizarNomeCliente @nome = $1, @cpf = $2, @email = $3
+      EXEC kiwicut.atualizarNomeCliente '${nome}','${cpf}','${email}'
       `,
       [nome, cpf, email],
     );
@@ -61,7 +61,7 @@ export class ClienteService {
   async atualizarSobrenomeCliente(sobrenome: string, cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.atualizarSobrenomeCliente @sobrenome = $1, @cpf = $2, @email = $3
+      EXEC kiwicut.atualizarSobrenomeCliente '${sobrenome}','${cpf}','${email}'
       `,
       [sobrenome, cpf, email],
     );
@@ -74,7 +74,7 @@ export class ClienteService {
   async atualizarTelefoneCliente(telefone: string, cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.atualizarTelefoneCliente @telefone = $1, @cpf = $2, @email = $3
+      EXEC kiwicut.atualizarTelefoneCliente '${telefone}','${cpf}','${email}'
       `,
       [telefone, cpf, email],
     );
@@ -87,7 +87,7 @@ export class ClienteService {
   async atualizarCepCliente(cep: string, cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.atualizarCepCliente @cep = $1, @cpf = $2, @email = $3
+      EXEC kiwicut.atualizarCepCliente '${cep}','${cpf}','${email}'
       `,
       [cep, cpf, email],
     );
@@ -100,7 +100,7 @@ export class ClienteService {
   async atualizarSenhaCliente(senha: string, cpf: string, email: string): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.atualizarSenhaCliente @senha = $1, @cpf = $2, @email = $3
+      EXEC kiwicut.atualizarSenhaCliente '${senha}','${cpf}','${email}'
       `,
       [senha, cpf, email],
     );

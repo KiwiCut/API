@@ -12,9 +12,9 @@ import { ClienteService } from 'src/service/cliente.services';
         type: 'mssql',
         host: 'regulus.cotuca.unicamp.br',
         port: 1433,
-        username: 'BD22300',
-        password: 'BD22300',
-        database: 'BD22300',
+        username: 'BD23341',
+        password: 'BD23341',
+        database: 'BD23341',
         entities: [],
         synchronize: true,
         extra: {

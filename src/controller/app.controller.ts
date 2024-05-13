@@ -20,54 +20,54 @@ export class AppController {
     await this.clienteService.incluirCliente(nome, sobrenome, email, telefone, senha, cpf, cep, dataNascimento);
   }
 
-  @Delete(':cpf/:email')
+  @Delete('deletar')
   async deletarCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
   ): Promise<void> {
     await this.clienteService.deletarCliente(cpf, email);
   }
 
-  @Put(':cpf/:email/nome')
+  @Put('atualizarNome')
   async atualizarNomeCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
     @Body('nome') nome: string,
   ): Promise<void> {
     await this.clienteService.atualizarNomeCliente(nome, cpf, email);
   }
 
-  @Put(':cpf/:email/sobrenome')
+  @Put('atualizarSobrenome')
   async atualizarSobrenomeCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
     @Body('sobrenome') sobrenome: string,
   ): Promise<void> {
     await this.clienteService.atualizarSobrenomeCliente(sobrenome, cpf, email);
   }
 
-  @Put(':cpf/:email/telefone')
+  @Put('atualizarTelefone')
   async atualizarTelefoneCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
     @Body('telefone') telefone: string,
   ): Promise<void> {
     await this.clienteService.atualizarTelefoneCliente(telefone, cpf, email);
   }
 
-  @Put(':cpf/:email/cep')
+  @Put('atualizarCep')
   async atualizarCepCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
     @Body('cep') cep: string,
   ): Promise<void> {
     await this.clienteService.atualizarCepCliente(cep, cpf, email);
   }
 
-  @Put(':cpf/:email/senha')
+  @Put('atualizarSenha')
   async atualizarSenhaCliente(
-    @Param('cpf') cpf: string,
-    @Param('email') email: string,
+    @Body('cpf') cpf: string,
+    @Body('email') email: string,
     @Body('senha') senha: string,
   ): Promise<void> {
     await this.clienteService.atualizarSenhaCliente(senha, cpf, email);
