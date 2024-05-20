@@ -110,13 +110,13 @@ export class ClienteService {
     }
   }
 
-  async visualizarTodos(): Promise<Cliente[]> { // Modifique o tipo de retorno para Cliente[]
+  async visualizarTodos(): Promise<Cliente[]> { 
     return await this.connection.query(
       `
       select * from kiwicut.Cliente
       `,
       
-    ); // Retorna todos os clientes do banco de dados
+    ); 
   }
 
 

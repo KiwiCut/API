@@ -12,11 +12,11 @@ export class ShowService {
     private readonly connection: Connection,
   ) {}
 
-  async incluirShow(nome: string, localCep: string, dataShow: Date, idArtista: number): Promise<void> {
+  async incluirShowComData(nome: string, localCep: string, dataShow: Date, idArtista: Number): Promise<void> {
     await this.connection.query(
       `
-      EXEC kiwicut.incluirShow 
-      '${nome}', '${localCep}', '${dataShow}','${idArtista}'
+      EXEC kiwicut.incluirShowComData 
+      ${idArtista},'${nome}', '${localCep}', '${dataShow}'
       `,
       [nome, localCep, dataShow, idArtista],
     );

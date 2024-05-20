@@ -10,7 +10,7 @@ export class ShowController {
   @Post()
   async criarShow(@Body() showData: Show): Promise<void> {
     const { nome, localCep, dataShow, idArtista } = showData;
-    await this.showService.incluirShow(nome, localCep, dataShow, idArtista);
+    await this.showService.incluirShowComData(nome, localCep, dataShow, idArtista);
   }
 
   @Get()

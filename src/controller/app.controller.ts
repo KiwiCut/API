@@ -75,8 +75,8 @@ export class AppController {
   }
 
   @Get('buscar')
-  async visualizarTodos(): Promise<Cliente[]> { // Modifique o tipo de retorno para Cliente[]
-    return await this.clienteService.visualizarTodos(); // Retorne a lista de clientes
+  async visualizarTodos(): Promise<Cliente[]> { 
+    return await this.clienteService.visualizarTodos();
   }
 
 
