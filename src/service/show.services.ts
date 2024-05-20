@@ -25,7 +25,7 @@ export class ShowService {
   async deletarShow(id: number): Promise<void> {
     const queryResult = await this.connection.query(
       `
-      EXEC kiwicut.deletarShow '${id}'
+      EXEC kiwicut.cancelarShow '${id}'
       `,
       [id],
     );
@@ -42,7 +42,7 @@ export class ShowService {
       `,
       [id, nome, localCep, dataShow, idArtista],
     );
-
+      // V E R I F I C A R   O   Q U E   E S S A   R O T A   D E V E R I A   F A Z E R
     if (queryResult && queryResult.rowsAffected && queryResult.rowsAffected[0] === 0) {
       throw new Error('Show inexistente ou inválido');
     }
