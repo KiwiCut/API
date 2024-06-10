@@ -4,9 +4,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from '../service/auth.service';
-import { UsersService } from 'src/service/user.service';
+import { ClienteService } from 'src/service/cliente.services';
 import { JwtStrategy } from './estrategiaJWT';
-import { User } from 'src/entity/user.entity';
+import { Cliente } from 'src/entity/cliente.entity';
 import { AuthController } from '../controller/auth.controller';
 
 @Module({
@@ -16,9 +16,9 @@ import { AuthController } from '../controller/auth.controller';
       secret: 'yourSecretKey', // Substitua 'yourSecretKey' pela sua chave secreta
       signOptions: { expiresIn: '60m' }, // Token válido por 60 minutos
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([Cliente]),
   ],
-  providers: [AuthService, UsersService, JwtStrategy],
+  providers: [AuthService, ClienteService, JwtStrategy],
   controllers: [AuthController],
   exports: [AuthService],
 })

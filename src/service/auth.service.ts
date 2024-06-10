@@ -1,21 +1,20 @@
-// src/service/auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from './user.service'; // Supondo que você tenha um serviço de usuários
+import { ClienteService } from './cliente.services'; 
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
   constructor(
     private jwtService: JwtService,
-    private usersService: UsersService, // Serviço para gerenciar usuários
+    private clienteService: ClienteService, // Serviço para gerenciar usuários
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOneByEmail(email);
-    if (user && await bcrypt.compare(pass, user.password)) {
-      const { password, ...result } = user;
-      return result;
+    const acessoUser = await this.clienteService.findOneByEmail(email);
+    if (acessoUser && await bcrypt.compare(pass, acessoUser.senha)) {
+      const { senha, ...resposta } = acessoUser;
+      return resposta;
     }
     return null;
   }

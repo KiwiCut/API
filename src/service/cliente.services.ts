@@ -130,5 +130,10 @@ export class ClienteService {
   {
     return
   }
-  
+
+  async findOneByEmail(email: string): Promise<Cliente | undefined> {
+    return this.clienteRepository.findOne({ where: { email } });
+  }
+
+
 }
