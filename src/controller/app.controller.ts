@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Delete, Put, Get} from '@nestjs/common';
+import { Controller, Post, Body, Delete, Put, Get, BadRequestException} from '@nestjs/common';
+import { promises } from 'dns';
 import { Cliente } from 'src/entity/cliente.entity';
 import { ClienteService } from 'src/service/cliente.services';
 
@@ -79,5 +80,18 @@ export class AppController {
     return await this.clienteService.visualizarTodos();
   }
 
+  @Post('validar')
+  async verificarLogin(
+    @Body('email') email: string,
+    @Body('senha') senha: string,
+    ): Promise<any>
+  {
+
+    var cliente =  await this.clienteService.validarCliente(email,senha);
+    if (cliente == null)
+      return BadRequestException;
+    return this.clienteService.logar();
+  
+  }
 
 }

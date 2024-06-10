@@ -118,7 +118,17 @@ export class ClienteService {
       
     ); 
   }
-
-
+  async validarCliente (email:string, senha:string)
+  {
+    return await this.connection.query(
+      `
+        exec kiwicut.validarCliente '${email}','${senha}'
+      `
+    )
+  }
+  async logar ()
+  {
+    return
+  }
   
 }

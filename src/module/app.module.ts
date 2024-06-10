@@ -7,6 +7,9 @@ import { AppService } from 'src/service/app.service';
 import { ClienteService } from 'src/service/cliente.services';
 import { ShowService } from 'src/service/show.services';
 import { Show } from 'src/entity/show.entity';
+import { JwtModule } from '@nestjs/jwt';
+import {PassportModule} from '@nestjs/passport';
+
 
 @Module({
   imports: [
@@ -27,7 +30,11 @@ import { Show } from 'src/entity/show.entity';
       }),
     }),
     TypeOrmModule.forFeature([Cliente,Show],),
-  ],
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: '!D2p$U5b&Q9w#N8f@G4',
+      signOptions: { expiresIn: 'id' },
+    })],
   
   controllers: [AppController, ShowController],
   providers: [ClienteService, AppService,ShowService],
