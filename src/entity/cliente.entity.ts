@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity({ name: 'Cliente' })
 export class Cliente {
@@ -28,4 +28,5 @@ export class Cliente {
 
   @Column({ type: 'date', nullable: true })
   dataNascimento: Date;
+
 }
