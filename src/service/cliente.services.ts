@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { Cliente } from '../entity/cliente.entity';
-import { promises } from 'dns';
-import { cp } from 'fs';
 
 @Injectable()
 export class ClienteService {
@@ -135,5 +133,13 @@ export class ClienteService {
     return this.clienteRepository.findOne({ where: { email } });
   }
 
+  async buscarShowPertoDeMim(cep): Promise<void>{
+    return await this.connection.query(
+      `
+        exec kiwicut.buscarShowsPertoDeMim '${cep}'
+      `,
+    )
+    
+  }
 
 }

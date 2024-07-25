@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Delete, Put, Get, BadRequestException} from '@nestjs/common';
+import { Controller, Post, Body, Delete, Put, Get, BadRequestException, Patch} from '@nestjs/common';
 import { promises } from 'dns';
 import { Cliente } from 'src/entity/cliente.entity';
 import { ClienteService } from 'src/service/cliente.services';
@@ -7,6 +7,14 @@ import { ClienteService } from 'src/service/cliente.services';
 @Controller('clientes')
 export class AppController {
   constructor(private readonly clienteService: ClienteService) {}
+
+  @Put('show')
+  async buscarShowPertoDeMim(
+    @Body('cep')cep:string
+  ):Promise<void>{
+     return await this.clienteService.buscarShowPertoDeMim(cep);
+  }
+
 
   @Post('incluir')
   async incluirCliente(
